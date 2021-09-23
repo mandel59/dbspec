@@ -1,0 +1,6 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "yaml.schemas": {
+    "schema/draft-00/dbspec.schema.json": ["examples/draft-00/*.yml"]
+  }
+}

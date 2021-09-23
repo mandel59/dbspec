@@ -1,0 +1,63 @@
+dbspec: draft-00
+title: My Awesome Store Database
+description: |
+  Database for My Awesome Store Management System
+meta:
+  author: Ryusei Yamaguchi
+target:
+  dialect: sqlite
+  version: "3.36.0"
+tables:
+  customer:
+    title: 顧客
+    columnOrder: [customer_id, family_name, given_name]
+    columns:
+      customer_id:
+        title: 顧客ID
+        type: integer
+      name:
+        type: text
+        title: 名前
+        notNull: true
+      address:
+        type: text
+        title: 住所
+      email:
+        type: text
+        title: メールアドレス
+      registerd_at:
+        title: 登録日
+        type: timestamp
+        default: { raw: current_time }
+    constraints:
+      - as: name_is_not_empty
+        check: { raw: name != '' }
+      - as: address_is_not_empty
+        check: { raw: address != '' }
+      - as: email_contains_at_mark
+        check: { raw: email like '%@%' }
+    primaryKey: [customer_id]
+    indexes:
+      - columns: [name]
+    examples:
+      - customer_id: 1
+        name: 鈴木 太郎
+        address: 東京都小石川区巣鴨駕籠町1-1
+        email: taro.suzuki@example.com
+        registered_at: "2021-09-20 12:34:56"
+  orders:
+    title: 注文
+    columns:
+      order_number:
+        title: 注文番号
+        type: integer
+        primaryKey: true
+        autoIncrement: true
+      ordered_by:
+        title: 注文者
+        foreignKey: { $ref: "#/tables/customer/columns/customer_id" }
+    primaryKey: [order_number]
+    foreignKeys:
+      - from: [ordered_by]
+        to: { $ref: "#/tables/customer" }
+        columns: [customer_id]
