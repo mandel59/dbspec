@@ -54,7 +54,7 @@
           "type": "object",
           "patternProperties": {
             ".*": {
-              "$ref": "#/definitions/Table"
+              "$ref": "#/definitions/TableOrView"
             }
           }
         }
@@ -97,6 +97,12 @@
         }
       }
     },
+    "TableOrView": {
+      "oneOf": [
+        { "$ref": "#/definitions/Table" },
+        { "$ref": "#/definitions/View" }
+      ]
+    },
     "Table": {
       "type": "object",
       "additionalProperties": false,
@@ -104,6 +110,9 @@
       "properties": {
         "title": {
           "type": "string"
+        },
+        "type": {
+          "const": "table"
         },
         "description": {
           "type": "string"
@@ -149,6 +158,63 @@
           "items": {
             "$ref": "#/definitions/Index"
           }
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "patternProperties": {
+              ".*": {
+                "$ref": "#/definitions/ValueRef"
+              }
+            }
+          }
+        }
+      }
+    },
+    "View": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "meta": {
+          "type": "object"
+        },
+        "as": {
+          "type": "string"
+        },
+        "type": {
+          "const": "view"
+        },
+        "columnOrder": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "referTo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TableRef"
+          }
+        },
+        "columns": {
+          "type": "object",
+          "patternProperties": {
+            ".*": {
+              "$ref": "#/definitions/Column"
+            }
+          }
+        },
+        "query": {
+          "type": "string"
         },
         "examples": {
           "type": "array",
