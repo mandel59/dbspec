@@ -8,54 +8,34 @@
       "additionalProperties": true,
       "required": ["dbspec"],
       "properties": {
-        "dbspec": {
-          "$ref": "#/definitions/DBspecHeader"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "meta": {
-          "type": "object"
-        },
-        "target": {
-          "$ref": "#/definitions/Target"
-        },
-        "schema": {
-          "type": "string"
-        },
+        "dbspec": { "$ref": "#/definitions/DBspecHeader" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "meta": { "type": "object" },
+        "target": { "$ref": "#/definitions/Target" },
+        "schema": { "type": "string" },
         "types": {
           "type": "object",
           "patternProperties": {
-            ".*": {
-              "$ref": "#/definitions/Type"
-            }
+            ".*": { "$ref": "#/definitions/Type" }
           }
         },
         "constants": {
           "type": "object",
           "patternProperties": {
-            ".*": {
-              "$ref": "#/definitions/Value"
-            }
+            ".*": { "$ref": "#/definitions/Value" }
           }
         },
         "constraints": {
           "type": "object",
           "patternProperties": {
-            ".*": {
-              "$ref": "#/definitions/Constraint"
-            }
+            ".*": { "$ref": "#/definitions/Constraint" }
           }
         },
         "tables": {
           "type": "object",
           "patternProperties": {
-            ".*": {
-              "$ref": "#/definitions/TableOrView"
-            }
+            ".*": { "$ref": "#/definitions/TableOrView" }
           }
         }
       }
@@ -69,9 +49,7 @@
       "description": "metadata record",
       "additionalProperties": true,
       "properties": {
-        "author": {
-          "type": "string"
-        },
+        "author": { "type": "string" },
         "modifiedAt": {
           "type": "string",
           "format": "date-time"
@@ -83,18 +61,10 @@
       "additionalItems": false,
       "required": ["raw"],
       "properties": {
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "meta": {
-          "type": "object"
-        },
-        "raw": {
-          "type": "string"
-        }
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "meta": { "type": "object" },
+        "raw": { "type": "string" }
       }
     },
     "TableOrView": {
@@ -108,65 +78,39 @@
       "additionalProperties": false,
       "required": ["columns"],
       "properties": {
-        "title": {
-          "type": "string"
-        },
-        "type": {
-          "const": "table"
-        },
-        "description": {
-          "type": "string"
-        },
-        "meta": {
-          "type": "object"
-        },
-        "name": {
-          "type": "string"
-        },
-        "primaryKey": {
-          "$ref": "#/definitions/Unique"
-        },
-        "unique": {
-          "$ref": "#/definitions/Unique"
-        },
+        "title": { "type": "string" },
+        "type": { "const": "table" },
+        "description": { "type": "string" },
+        "meta": { "type": "object" },
+        "name": { "type": "string" },
+        "primaryKey": { "$ref": "#/definitions/Unique" },
+        "unique": { "$ref": "#/definitions/Unique" },
         "foreignKeys": {
           "type": "array",
-          "items": {
-            "$ref": "#/definitions/ForeignKey"
-          }
+          "items": { "$ref": "#/definitions/ForeignKey" }
         },
         "columnOrder": {
           "type": "array",
           "minItems": 1,
-          "items": {
-            "type": "string"
-          }
+          "items": { "type": "string" }
         },
         "columns": {
           "type": "object",
           "patternProperties": {
-            ".*": {
-              "$ref": "#/definitions/Column"
-            }
+            ".*": { "$ref": "#/definitions/Column" }
           }
         },
-        "constraints": {
-          "$ref": "#/definitions/ConstraintList"
-        },
+        "constraints": { "$ref": "#/definitions/ConstraintList" },
         "indexes": {
           "type": "array",
-          "items": {
-            "$ref": "#/definitions/Index"
-          }
+          "items": { "$ref": "#/definitions/Index" }
         },
         "examples": {
           "type": "array",
           "items": {
             "type": "object",
             "patternProperties": {
-              ".*": {
-                "$ref": "#/definitions/ValueRef"
-              }
+              ".*": { "$ref": "#/definitions/ValueRef" }
             }
           }
         }
@@ -177,53 +121,33 @@
       "additionalProperties": false,
       "required": ["type"],
       "properties": {
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "meta": {
-          "type": "object"
-        },
-        "name": {
-          "type": "string"
-        },
-        "type": {
-          "const": "view"
-        },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "meta": { "type": "object" },
+        "name": { "type": "string" },
+        "type": { "const": "view" },
         "columnOrder": {
           "type": "array",
           "minItems": 1,
-          "items": {
-            "type": "string"
-          }
+          "items": { "type": "string" }
         },
         "referTo": {
           "type": "array",
-          "items": {
-            "$ref": "#/definitions/TableRef"
-          }
+          "items": { "$ref": "#/definitions/TableRef" }
         },
         "columns": {
           "type": "object",
           "patternProperties": {
-            ".*": {
-              "$ref": "#/definitions/Column"
-            }
+            ".*": { "$ref": "#/definitions/Column" }
           }
         },
-        "query": {
-          "type": "string"
-        },
+        "query": { "type": "string" },
         "examples": {
           "type": "array",
           "items": {
             "type": "object",
             "patternProperties": {
-              ".*": {
-                "$ref": "#/definitions/ValueRef"
-              }
+              ".*": { "$ref": "#/definitions/ValueRef" }
             }
           }
         }
@@ -232,12 +156,8 @@
     "Target": {
       "type": "object",
       "properties": {
-        "dialect": {
-          "type": "string"
-        },
-        "version": {
-          "type": "string"
-        }
+        "dialect": { "type": "string" },
+        "version": { "type": "string" }
       }
     },
     "TypeLiteral": {
@@ -257,29 +177,17 @@
     },
     "Type": {
       "oneOf": [
-        {
-          "$ref": "#/definitions/TypeLiteral"
-        },
-        {
-          "$ref": "#/definitions/Raw"
-        },
+        { "$ref": "#/definitions/TypeLiteral" },
+        { "$ref": "#/definitions/Raw" },
         {
           "type": "object",
           "additionalProperties": false,
           "required": ["type"],
           "properties": {
-            "title": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
-            },
-            "meta": {
-              "type": "object"
-            },
-            "type": {
-              "$ref": "#/definitions/TypeLiteral"
-            }
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "meta": { "type": "object" },
+            "type": { "$ref": "#/definitions/TypeLiteral" }
           }
         },
         {
@@ -287,28 +195,16 @@
           "additionalProperties": false,
           "required": ["text"],
           "properties": {
-            "title": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
-            },
-            "meta": {
-              "type": "object"
-            },
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "meta": { "type": "object" },
             "text": {
               "type": "object",
               "additionalProperties": false,
               "properties": {
-                "length": {
-                  "type": "integer"
-                },
-                "characterSet": {
-                  "$ref": "#/definitions/CharacterSet"
-                },
-                "collation": {
-                  "$ref": "#/definitions/Collation"
-                }
+                "length": { "type": "integer" },
+                "characterSet": { "$ref": "#/definitions/CharacterSet" },
+                "collation": { "$ref": "#/definitions/Collation" }
               }
             }
           }
@@ -318,25 +214,15 @@
           "additionalProperties": false,
           "required": ["numeric"],
           "properties": {
-            "title": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
-            },
-            "meta": {
-              "type": "object"
-            },
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "meta": { "type": "object" },
             "decimal": {
               "type": "object",
               "additionalProperties": false,
               "properties": {
-                "precision": {
-                  "type": "integer"
-                },
-                "scale": {
-                  "type": "integer"
-                }
+                "precision": { "type": "integer" },
+                "scale": { "type": "integer" }
               }
             }
           }
@@ -346,25 +232,15 @@
           "additionalProperties": false,
           "required": ["float"],
           "properties": {
-            "title": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
-            },
-            "meta": {
-              "type": "object"
-            },
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "meta": { "type": "object" },
             "float": {
               "type": "object",
               "additionalProperties": false,
               "properties": {
-                "precision": {
-                  "type": "integer"
-                },
-                "scale": {
-                  "type": "integer"
-                }
+                "precision": { "type": "integer" },
+                "scale": { "type": "integer" }
               }
             }
           }
@@ -374,25 +250,15 @@
           "additionalProperties": false,
           "required": ["timestamp"],
           "properties": {
-            "title": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
-            },
-            "meta": {
-              "type": "object"
-            },
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "meta": { "type": "object" },
             "timestamp": {
               "type": "object",
               "additionalProperties": false,
               "properties": {
-                "withTimezone": {
-                  "type": "boolean"
-                },
-                "precision": {
-                  "type": "integer"
-                }
+                "withTimezone": { "type": "boolean" },
+                "precision": { "type": "integer" }
               }
             }
           }
@@ -401,9 +267,7 @@
     },
     "TypeRef": {
       "oneOf": [
-        {
-          "$ref": "#/definitions/Type"
-        },
+        { "$ref": "#/definitions/Type" },
         {
           "type": "object",
           "additionalProperties": false,
@@ -420,9 +284,7 @@
     },
     "ValueRef": {
       "oneOf": [
-        {
-          "$ref": "#/definitions/Value"
-        },
+        { "$ref": "#/definitions/Value" },
         {
           "type": "object",
           "additionalProperties": false,
@@ -463,9 +325,7 @@
     },
     "ConstraintRef": {
       "oneOf": [
-        {
-          "$ref": "#/definitions/Constraint"
-        },
+        { "$ref": "#/definitions/Constraint" },
         {
           "type": "object",
           "additionalProperties": false,
@@ -481,18 +341,10 @@
       ]
     },
     "CharacterSet": {
-      "oneOf": [
-        {
-          "$ref": "#/definitions/Raw"
-        }
-      ]
+      "oneOf": [{ "$ref": "#/definitions/Raw" }]
     },
     "Collation": {
-      "oneOf": [
-        {
-          "$ref": "#/definitions/Raw"
-        }
-      ]
+      "oneOf": [{ "$ref": "#/definitions/Raw" }]
     },
     "Value": {
       "oneOf": [
@@ -504,23 +356,15 @@
           "additionalProperties": false,
           "required": ["value"],
           "properties": {
-            "title": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
-            },
-            "meta": {
-              "type": "object"
-            },
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "meta": { "type": "object" },
             "value": {
               "type": ["string", "number", "boolean", "null"]
             }
           }
         },
-        {
-          "$ref": "#/definitions/Raw"
-        }
+        { "$ref": "#/definitions/Raw" }
       ]
     },
     "Constraint": {
@@ -530,21 +374,11 @@
           "additionalProperties": false,
           "required": ["check"],
           "properties": {
-            "name": {
-              "type": "string"
-            },
-            "title": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
-            },
-            "meta": {
-              "type": "object"
-            },
-            "check": {
-              "$ref": "#/definitions/ValueRef"
-            }
+            "name": { "type": "string" },
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "meta": { "type": "object" },
+            "check": { "$ref": "#/definitions/ValueRef" }
           }
         },
         {
@@ -552,53 +386,29 @@
           "additionalProperties": false,
           "required": ["regexp"],
           "properties": {
-            "name": {
-              "type": "string"
-            },
-            "title": {
-              "type": "string"
-            },
-            "description": {
-              "type": "string"
-            },
-            "meta": {
-              "type": "object"
-            },
-            "for": {
-              "type": "string"
-            },
-            "regexp": {
-              "type": "string"
-            }
+            "name": { "type": "string" },
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "meta": { "type": "object" },
+            "for": { "type": "string" },
+            "regexp": { "type": "string" }
           }
         }
       ]
     },
     "ConstraintList": {
       "type": "array",
-      "items": {
-        "$ref": "#/definitions/ConstraintRef"
-      }
+      "items": { "$ref": "#/definitions/ConstraintRef" }
     },
     "Column": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "name": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "meta": {
-          "type": "object"
-        },
-        "type": {
-          "$ref": "#/definitions/TypeRef"
-        },
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "meta": { "type": "object" },
+        "type": { "$ref": "#/definitions/TypeRef" },
         "notNull": {
           "type": "boolean",
           "examples": [true]
@@ -611,12 +421,8 @@
           "type": "boolean",
           "examples": [true]
         },
-        "foreignKey": {
-          "$ref": "#/definitions/ColumnRef"
-        },
-        "default": {
-          "$ref": "#/definitions/ValueRef"
-        },
+        "foreignKey": { "$ref": "#/definitions/ColumnRef" },
+        "default": { "$ref": "#/definitions/ValueRef" },
         "autoIncrement": {
           "type": "boolean",
           "examples": [true]
@@ -629,32 +435,22 @@
             "stored": { "type": "boolean", "examples": [true] }
           }
         },
-        "constraints": {
-          "$ref": "#/definitions/ConstraintList"
-        }
+        "constraints": { "$ref": "#/definitions/ConstraintList" }
       }
     },
     "ColumnNameList": {
       "type": "array",
-      "items": {
-        "type": "string"
-      }
+      "items": { "type": "string" }
     },
     "Unique": {
       "oneOf": [
-        {
-          "$ref": "#/definitions/ColumnNameList"
-        },
+        { "$ref": "#/definitions/ColumnNameList" },
         {
           "type": "object",
           "items": {
             "type": "string",
-            "columns": {
-              "$ref": "#/definitions/ColumnNameList"
-            },
-            "onConflict": {
-              "type": "string"
-            }
+            "columns": { "$ref": "#/definitions/ColumnNameList" },
+            "onConflict": { "type": "string" }
           }
         }
       ]
@@ -663,29 +459,17 @@
       "type": "object",
       "required": ["from", "to", "columns"],
       "properties": {
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "meta": {
-          "type": "object"
-        },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "meta": { "type": "object" },
         "from": {
           "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "items": { "type": "string" }
         },
-        "to": {
-          "$ref": "#/definitions/TableRef"
-        },
+        "to": { "$ref": "#/definitions/TableRef" },
         "columns": {
           "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "items": { "type": "string" }
         }
       }
     },
@@ -694,24 +478,14 @@
       "additionalProperties": false,
       "required": ["columns"],
       "properties": {
-        "name": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "meta": {
-          "type": "object"
-        },
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "meta": { "type": "object" },
         "columns": {
           "type": "array",
           "minItems": 1,
-          "items": {
-            "type": "string"
-          }
+          "items": { "type": "string" }
         }
       }
     }
