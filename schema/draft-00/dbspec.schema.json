@@ -120,7 +120,7 @@
         "meta": {
           "type": "object"
         },
-        "as": {
+        "name": {
           "type": "string"
         },
         "primaryKey": {
@@ -186,7 +186,7 @@
         "meta": {
           "type": "object"
         },
-        "as": {
+        "name": {
           "type": "string"
         },
         "type": {
@@ -530,7 +530,7 @@
           "additionalProperties": false,
           "required": ["check"],
           "properties": {
-            "as": {
+            "name": {
               "type": "string"
             },
             "title": {
@@ -552,7 +552,7 @@
           "additionalProperties": false,
           "required": ["regexp"],
           "properties": {
-            "as": {
+            "name": {
               "type": "string"
             },
             "title": {
@@ -584,7 +584,7 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "as": {
+        "name": {
           "type": "string"
         },
         "title": {
@@ -620,6 +620,14 @@
         "autoIncrement": {
           "type": "boolean",
           "examples": [true]
+        },
+        "generatedAlways": {
+          "type": "object",
+          "required": ["as"],
+          "properties": {
+            "as": { "$ref": "#/definitions/ValueRef" },
+            "stored": { "type": "boolean", "examples": [true] }
+          }
         },
         "constraints": {
           "$ref": "#/definitions/ConstraintList"
@@ -686,7 +694,7 @@
       "additionalProperties": false,
       "required": ["columns"],
       "properties": {
-        "as": {
+        "name": {
           "type": "string"
         },
         "title": {

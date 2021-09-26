@@ -30,11 +30,11 @@ tables:
         type: timestamp
         default: { raw: current_time }
     constraints:
-      - as: name_is_not_empty
+      - name: name_is_not_empty
         check: { raw: name != '' }
-      - as: address_is_not_empty
+      - name: address_is_not_empty
         check: { raw: address != '' }
-      - as: email_contains_at_mark
+      - name: email_contains_at_mark
         check: { raw: email like '%@%' }
     primaryKey: [customer_id]
     indexes:
