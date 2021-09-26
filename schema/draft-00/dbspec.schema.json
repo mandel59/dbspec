@@ -9,11 +9,11 @@
       "required": ["dbspec"],
       "properties": {
         "dbspec": { "$ref": "#/definitions/DBspecHeader" },
+        "name": { "$ref": "#/definitions/Name" },
         "title": { "$ref": "#/definitions/Title" },
         "description": { "$ref": "#/definitions/Description" },
         "meta": { "$ref": "#/definitions/Metadata" },
         "target": { "$ref": "#/definitions/Target" },
-        "schema": { "type": "string" },
         "types": {
           "type": "object",
           "patternProperties": {
