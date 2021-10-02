@@ -441,12 +441,18 @@
           "examples": [true]
         },
         "generatedAlways": {
-          "type": "object",
-          "required": ["as"],
-          "properties": {
-            "as": { "$ref": "#/definitions/ValueRef" },
-            "stored": { "type": "boolean", "examples": [true] }
-          }
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "as": { "$ref": "#/definitions/ValueRef" },
+                "stored": { "type": "boolean", "examples": [true] }
+              }
+            },
+            {
+              "type": "boolean"
+            }
+          ]
         },
         "constraints": { "$ref": "#/definitions/ConstraintList" }
       }
